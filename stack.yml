@@ -1,0 +1,60 @@
+provider:
+  name: faas
+  gateway: http://192.168.1.102:8081
+
+functions:
+  transcode-entrypoint:
+    lang: go
+    handler: ./transcode-entrypoint
+    image: cpitkin/transcode-entrypoint
+    environment:
+      combine_output: false
+
+  transcode-worker:
+    lang: 'dockerfile'
+    handler: './transcode-worker'
+    image: 'cpitkin/transcode-worker'
+    secrets: 
+      - 'access_key'
+      - 'secret_key'
+      - 'minio_url'
+      - 'minio_port'
+    environment:
+      combine_output: false
+      max_inflight: "2"
+      read_timeout: "28800s"
+      write_timeout: "28800s"
+      ack_timeout: "28800s"
+    limits:
+      memory: '4069m'
+      cpu: '10.0'
+
+  transcode-move:
+    lang: 'dockerfile'
+    handler: ./transcode-move
+    image: cpitkin/transcode-move
+    secrets: 
+      - 'access_key'
+      - 'secret_key'
+      - 'minio_url'
+      - 'minio_port'
+      - 'ff_access_key'
+      - 'ff_secret_key'
+      - 'ff_minio_url'
+    environment:
+      combine_output: false
+
+  transcode-delete:
+    lang: 'dockerfile'
+    handler: ./transcode-delete
+    image: cpitkin/transcode-delete
+    secrets: 
+      - 'access_key'
+      - 'secret_key'
+      - 'minio_url'
+      - 'minio_port'
+      - 'ff_access_key'
+      - 'ff_secret_key'
+      - 'ff_minio_url'
+    environment:
+      combine_output: false

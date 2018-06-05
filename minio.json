@@ -1,0 +1,50 @@
+{
+  "EventName": "s3:ObjectCreated:Put",
+  "Key": "transcode/movies/Attack of the Giant Leeches (1959).mkv",
+  "Records": [
+    {
+      "eventVersion": "2.0",
+      "eventSource": "minio:s3",
+      "awsRegion": "rapture",
+      "eventTime": "2018-05-08T22:31:18Z",
+      "eventName": "s3:ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "EYga97Xt3vMTChMnhJXd"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "10.255.0.3:56402"
+      },
+      "responseElements": {
+        "x-amz-request-id": "152CCC011E346B1A",
+        "x-minio-origin-endpoint": "http://10.0.2.7:9000"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "Config",
+        "bucket": {
+          "name": "transcode",
+          "ownerIdentity": {
+            "principalId": "EYga97Xt3vMTChMnhJXd"
+          },
+          "arn": "arn:aws:s3:::transcode"
+        },
+        "object": {
+          "key": "movies%2FIMAG0007.jpg",
+          "size": 2963965,
+          "eTag": "9fe55b9f64eaaac41c8c1651f2749202",
+          "contentType": "image/jpeg",
+          "userMetadata": {
+            "content-type": "image/jpeg"
+          },
+          "versionId": "1",
+          "sequencer": "152CCC011E346B1A"
+        }
+      },
+      "source": {
+        "host": "",
+        "port": "",
+        "userAgent": ""
+      }
+    }
+  ]
+}
